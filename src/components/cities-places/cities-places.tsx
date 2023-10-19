@@ -1,5 +1,5 @@
 import PlacesList from '../places-list/places-list';
-import Map from '../map/map';
+import CitiesMap from '../cities-map/cities-map';
 import {Offer} from '../../types/types';
 
 type CitiesPlacesProps = {
@@ -17,7 +17,7 @@ function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element {
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
               Popular
-              <svg className="places__sorting-arrow" width="7" height="4">
+              <svg className="places__sorting-arrow" width={7} height={4}>
                 <use xlinkHref="#icon-arrow-select"></use>
               </svg>
             </span>
@@ -31,7 +31,7 @@ function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element {
           <PlacesList offers={offers} />
         </section>
         <div className="cities__right-section">
-          <Map />
+          <CitiesMap />
         </div>
       </div>
     </div>

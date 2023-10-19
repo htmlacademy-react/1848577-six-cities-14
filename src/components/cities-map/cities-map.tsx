@@ -1,7 +1,7 @@
-function Map(): JSX.Element {
+function CitiesMap(): JSX.Element {
   return (
     <section className="cities__map map"></section>
   );
 }
 
-export default Map;
+export default CitiesMap;
