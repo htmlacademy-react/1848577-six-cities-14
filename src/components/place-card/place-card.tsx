@@ -1,6 +1,6 @@
 import {Offer} from '../../types/types';
 import {upperCaseFirst} from '../../utils/utils';
-import PremiumMark from '../premium-mark/premium-mark';
+import PremiumMark from '../ui/premium-mark/premium-mark';
 
 type PlaceCardProps = {
   offer: Offer;
