@@ -5,11 +5,11 @@ const AppRoute = {
   Offer: '/offer/:id'
 } as const;
 
-const AuthorizationStatus = {
-  Auth: 'AUTH',
-  NoAuth: 'NO_AUTH',
-  Unknown: 'UNKNOWN'
-} as const;
+enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN'
+}
 
 const ReviewLength = {
   Min: 50,
