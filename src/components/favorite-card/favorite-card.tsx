@@ -4,22 +4,22 @@ import {upperCaseFirst} from '../../utils/utils';
 import PremiumMark from '../ui/premium-mark/premium-mark';
 import ButtonBookmark from '../ui/button-bookmark/button-bookmark';
 
-type PlaceCardProps = {
+type FavoriteCardProps = {
   offer: Offer;
 }
 
-function PlaceCard({offer}: PlaceCardProps): JSX.Element {
+function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
   const {images, isPremium, price, title, type, id} = offer;
 
   return (
-    <article className="cities__card place-card">
+    <article className="favorites__card place-card">
       {isPremium && <PremiumMark />}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={images[0]} width={260} height={200} alt="Place image" />
+          <img className="place-card__image" src={images[0]} width={150} height={110} alt="Place image" />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -29,7 +29,7 @@ function PlaceCard({offer}: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{width: '100%'}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -42,4 +42,4 @@ function PlaceCard({offer}: PlaceCardProps): JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default FavoriteCard;
