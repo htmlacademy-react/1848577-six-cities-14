@@ -5,7 +5,7 @@ type PlacesListProps = {
   offers: Offer[];
 }
 
-function PlacesList({offers}: PlacesListProps): JSX.Element|null {
+function PlacesList({offers}: PlacesListProps): JSX.Element | null {
   return offers.length ? (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((item: Offer) => (

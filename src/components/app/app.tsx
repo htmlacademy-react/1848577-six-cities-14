@@ -19,12 +19,12 @@ function App({offers}: AppProps): JSX.Element {
         <Route path={AppRoute.Main} element={<MainPage offers={offers} />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />
         <Route path={AppRoute.Favorites} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-            <FavoritesPage />
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <FavoritesPage offers={offers} />
           </PrivateRoute>
         }
         />
-        <Route path={AppRoute.Offer} element={<OfferPage />} />
+        <Route path={AppRoute.Offer} element={<OfferPage offers={offers} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

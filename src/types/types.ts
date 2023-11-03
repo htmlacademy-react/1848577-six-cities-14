@@ -1,20 +1,23 @@
-export type Offer = {
-  bedrooms: number;
+export type OfferPreview = {
   city: City;
-  description: string;
   goods: string[];
-  host: Host;
   id: number;
-  images: string[];
   isFavorite: boolean;
   isPremium: boolean;
   location: Location;
   maxAdults: number;
-  previewImage: string;
   price: number;
   rating: number;
   title: string;
   type: string;
+}
+
+export type Offer = OfferPreview & {
+  bedrooms: number;
+  description: string;
+  host: Host;
+  images: string[];
+  previewImage: string;
 }
 
 export type City = {
@@ -39,4 +42,17 @@ export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
+}
+
+export type Review = {
+  comment: string;
+  date: string;
+  id: number;
+  rating: number;
+  user: {
+  avatarUrl: string;
+  id: number;
+  isPro: boolean;
+  name: string;
+};
 }
