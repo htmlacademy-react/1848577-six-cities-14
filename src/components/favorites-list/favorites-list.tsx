@@ -1,6 +1,6 @@
 import {Offer} from '../../types/types';
 import {CITIES} from '../../consts';
-import FavoriteCard from '../favorite-card/favorite-card';
+import PlaceCard from '../place-card/place-card';
 
 type FavoritesListProps = {
   offers: Offer[];
@@ -15,7 +15,11 @@ function FavoritesList({offers}: FavoritesListProps): JSX.Element | null {
     }
   });
 
-  return offers.length ? (
+  if (!offers.length) {
+    return null;
+  }
+
+  return (
     <ul className="favorites__list">
       {favoritesCards.map((item) => (
         <li key={item[0].id} className="favorites__locations-items">
@@ -28,12 +32,12 @@ function FavoritesList({offers}: FavoritesListProps): JSX.Element | null {
           </div>
           <div className="favorites__places">
             {item.map((el: Offer) => (
-              <FavoriteCard key={el.id} offer={el} />
+              <PlaceCard key={el.id} offer={el} size='small' page='favorites' />
             ))}
           </div>
         </li>
       ))}
-    </ul>) : null;
+    </ul>);
 }
 
 export default FavoritesList;

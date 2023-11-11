@@ -1,12 +1,22 @@
-import PlacesList from '../places-list/places-list';
-import CitiesMap from '../cities-map/cities-map';
+import PlaceCard from '../place-card/place-card';
+import Map from '../map/map';
 import {Offer} from '../../types/types';
+import {useState} from 'react';
 
 type CitiesPlacesProps = {
   offers: Offer[];
 }
 
-function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element {
+function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element | null {
+
+  const activeCity = offers[1].city;
+  const [activeOfferId, setActiveOfferId] = useState<Offer['id'] | null>(null);
+  const handleCardHover = (offerId: Offer['id'] | null) => setActiveOfferId(offerId);
+
+  if (!offers.length) {
+    return null;
+  }
+
   return (
     <div className="cities">
       <div className="cities__places-container container">
@@ -28,10 +38,14 @@ function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element {
               <li className="places__option" tabIndex={0}>Top rated first</li>
             </ul>
           </form>
-          <PlacesList offers={offers} />
+          <div className="cities__places-list places__list tabs__content">
+            {offers.map((item: Offer) => (
+              <PlaceCard key={item.id} offer={item} size='big' page='cities' onCardHover={handleCardHover} />
+            ))}
+          </div>
         </section>
         <div className="cities__right-section">
-          <CitiesMap />
+          <Map page="cities" offers={offers} location={activeCity.location} activeOfferId={activeOfferId} />
         </div>
       </div>
     </div>
