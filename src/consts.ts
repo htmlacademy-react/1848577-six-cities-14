@@ -18,4 +18,8 @@ const ReviewLength = {
 
 const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-export {AppRoute, AuthorizationStatus, ReviewLength, CITIES};
+const MAX_REVIEWS_COUNT = 10;
+
+const MAX_NEAR_PLACES_COUNT = 3;
+
+export {AppRoute, AuthorizationStatus, ReviewLength, CITIES, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT};

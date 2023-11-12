@@ -1,41 +1,19 @@
-import {reviwes} from '../../mocks/mocks';
-import {getDate} from '../../utils/utils';
+import {reviews} from '../../mocks/mocks';
 import ReviewForm from '../review-form/review-form';
+import {MAX_REVIEWS_COUNT} from '../../consts';
+import ReviewItem from '../review-item/review-item';
 
 function ReviewsList() {
+  const reviewsToRender = [...reviews]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, MAX_REVIEWS_COUNT);
+
   return (
     <section className="offer__reviews reviews">
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
       <ul className="reviews__list">
-        {reviwes.map(({user, ...prop}) => (
-          <li key={prop.id} className="reviews__item">
-            <div className="reviews__user user">
-              <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                <img
-                  className="reviews__avatar user__avatar"
-                  src={user.avatarUrl}
-                  width={54}
-                  height={54}
-                  alt={`${'Reviews avatar'} ${user.name}`}
-                />
-              </div>
-              <span className="reviews__user-name">
-                {user.name}
-              </span>
-            </div>
-            <div className="reviews__info">
-              <div className="reviews__rating rating">
-                <div className="reviews__stars rating__stars">
-                  <span style={{ width: '80%' }} />
-                  <span className="visually-hidden">Rating</span>
-                </div>
-              </div>
-              <p className="reviews__text">
-                {prop.comment}
-              </p>
-              <time className="reviews__time" dateTime={`${new Date(prop.date).toISOString()}`}>{`${getDate(prop.date)}`}</time>
-            </div>
-          </li>
+        {reviewsToRender.map((review) => (
+          <ReviewItem key={review.id} review={review} />
         ))}
       </ul>
       <ReviewForm />

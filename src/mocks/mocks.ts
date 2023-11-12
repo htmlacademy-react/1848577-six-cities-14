@@ -222,7 +222,7 @@ const offers: Offer[] = [
   }
 ];
 
-const reviwes: Review[] = [
+const reviews: Review[] = [
   {
     id: 1,
     user: {
@@ -249,4 +249,4 @@ const reviwes: Review[] = [
   }
 ];
 
-export {offers, reviwes};
+export {offers, reviews};

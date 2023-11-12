@@ -9,7 +9,7 @@ type CardImageSize = 'small' | 'big';
 type PlaceCardProps = {
   offer: Offer;
   size: CardImageSize;
-  page: 'cities' | 'favorites';
+  page: 'cities' | 'favorites' | 'near-places';
   onCardHover?: (offerId: OfferPreview['id'] | null) => void;
 }
 
