@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {Offer, OfferPreview} from '../../types/types';
-import {upperCaseFirst} from '../../utils/utils';
+import {getRatingWidth, upperCaseFirst} from '../../utils/utils';
 import PremiumMark from '../ui/premium-mark/premium-mark';
 import ButtonBookmark from '../ui/button-bookmark/button-bookmark';
 
@@ -19,7 +19,7 @@ const sizeMap: Record<CardImageSize, {width: string; height: string}> = {
 };
 
 function PlaceCard({offer, size, page, onCardHover}: PlaceCardProps): JSX.Element {
-  const {images, isPremium, price, title, type, id} = offer;
+  const {images, isPremium, price, title, type, id, rating} = offer;
 
   function handleMouseEnter() {
     onCardHover?.(id);
@@ -29,6 +29,16 @@ function PlaceCard({offer, size, page, onCardHover}: PlaceCardProps): JSX.Elemen
     onCardHover?.(null);
   }
 
+  function getCardInfoClass() {
+    let cardInfoClass;
+    if (page === 'favorites') {
+      cardInfoClass = 'favorites';
+    } else {
+      cardInfoClass = 'place';
+    }
+
+    return cardInfoClass;
+  }
   return (
     <article className={`${page}__card place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {isPremium && <PremiumMark />}
@@ -37,7 +47,7 @@ function PlaceCard({offer, size, page, onCardHover}: PlaceCardProps): JSX.Elemen
           <img className="place-card__image" src={images[0]} {...sizeMap[size]} alt="Place image" />
         </Link>
       </div>
-      <div className={`${page === 'cities' ? 'place' : 'favorites'}-card__info`}>
+      <div className={`${getCardInfoClass()}-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -47,7 +57,7 @@ function PlaceCard({offer, size, page, onCardHover}: PlaceCardProps): JSX.Elemen
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={page === 'cities' ? {width: '80%'} : {width: '100%'}}></span>
+            <span style={{width: getRatingWidth(rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
