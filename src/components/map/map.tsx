@@ -5,7 +5,7 @@ import {OfferPreview, Location} from '../../types/types';
 import useMap from '../../hooks/use-map';
 
 type MapProps = {
-  page: 'cities' | 'favorites';
+  page: 'cities' | 'offer';
   offers: OfferPreview[];
   location: Location;
   activeOfferId?: OfferPreview['id'] | null;

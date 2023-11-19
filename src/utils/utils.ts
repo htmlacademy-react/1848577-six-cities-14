@@ -13,4 +13,10 @@ function getDate(date: string): string {
   })}`;
 }
 
-export {upperCaseFirst, getDate};
+function getRatingWidth(rating: number): string {
+  let ratingWidth = String(rating * 20);
+  ratingWidth += '%';
+  return ratingWidth;
+}
+
+export {upperCaseFirst, getDate, getRatingWidth};
