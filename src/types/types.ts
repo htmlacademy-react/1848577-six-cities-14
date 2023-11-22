@@ -1,3 +1,5 @@
+import {store} from '../store';
+
 export type OfferPreview = {
   city: City;
   goods: string[];
@@ -56,3 +58,7 @@ export type Review = {
   name: string;
 };
 }
+
+export type State = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

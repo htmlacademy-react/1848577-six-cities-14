@@ -1,13 +1,8 @@
 import CitiesPlaces from '../../components/cities-places/cities-places';
 import MainHeader from '../../components/main-header/main-header';
 import LocationsList from '../../components/locations-list/locations-list';
-import {Offer} from '../../types/types';
 
-type MainPageProps = {
-  offers: Offer[];
-}
-
-function MainPage({offers}: MainPageProps): JSX.Element {
+function MainPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <MainHeader />
@@ -16,7 +11,7 @@ function MainPage({offers}: MainPageProps): JSX.Element {
         <div className="tabs">
           <LocationsList />
         </div>
-        <CitiesPlaces offers={offers} />
+        <CitiesPlaces />
       </main>
     </div>
   );
