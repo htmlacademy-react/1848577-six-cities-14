@@ -1,18 +1,17 @@
 import {Navigate, useParams} from 'react-router-dom';
-import {Offer} from '../../types/types';
+import {Offer, State} from '../../types/types';
 import ButtonBookmark from '../../components/ui/button-bookmark/button-bookmark';
 import {upperCaseFirst} from '../../utils/utils';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import NearPlaces from '../../components/near-places/near-places';
 import MainHeader from '../../components/main-header/main-header';
+import {useAppSelector} from '../../hooks';
 
-type OfferPageProps = {
-  offers: Offer[];
-}
-
-function OfferPage({offers}: OfferPageProps) {
-  const activeCity = offers[1].city;
+function OfferPage() {
+  const activeCity = useAppSelector((state: State): string => state.activeCity);
+  const offers: Offer[] = useAppSelector((state) => state.offers);
+  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
   const offerId = Number(useParams().id);
   const offerById = offers.find((item) => item.id === offerId);
   if (offerById) {
@@ -98,7 +97,7 @@ function OfferPage({offers}: OfferPageProps) {
                 <ReviewsList />
               </div>
             </div>
-            <Map page="offer" offers={offers} location={activeCity.location} />
+            <Map page="offer" offers={offers} location={filteredOffers[0].city.location} />
           </section>
           <div className="container">
             <NearPlaces offers={offers} />
