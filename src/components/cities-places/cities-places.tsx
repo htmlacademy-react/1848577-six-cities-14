@@ -1,20 +1,20 @@
 import PlaceCard from '../place-card/place-card';
 import Map from '../map/map';
-import {Offer} from '../../types/types';
+import {Offer, State} from '../../types/types';
 import {useState} from 'react';
+import {useAppSelector} from '../../hooks';
+import MainNoPlaces from '../main-no-places/main-no-places';
 
-type CitiesPlacesProps = {
-  offers: Offer[];
-}
+function CitiesPlaces(): JSX.Element | null {
 
-function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element | null {
-
-  const activeCity = offers[1].city;
+  const activeCity = useAppSelector((state: State): string => state.activeCity);
+  const offers: Offer[] = useAppSelector((state) => state.offers);
+  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
   const [activeOfferId, setActiveOfferId] = useState<Offer['id'] | null>(null);
   const handleCardHover = (offerId: Offer['id'] | null) => setActiveOfferId(offerId);
 
-  if (!offers.length) {
-    return null;
+  if (!filteredOffers.length) {
+    return <MainNoPlaces city={activeCity} />;
   }
 
   return (
@@ -22,7 +22,7 @@ function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element | null {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">312 places to stay in Amsterdam</b>
+          <b className="places__found">{filteredOffers.length} places to stay in {activeCity}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -39,13 +39,13 @@ function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element | null {
             </ul>
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {offers.map((item: Offer) => (
+            {filteredOffers.map((item: Offer) => (
               <PlaceCard key={item.id} offer={item} size='big' page='cities' onCardHover={handleCardHover} />
             ))}
           </div>
         </section>
         <div className="cities__right-section">
-          <Map page="cities" offers={offers} location={activeCity.location} activeOfferId={activeOfferId} />
+          <Map page="cities" offers={filteredOffers} location={filteredOffers[0].city.location} activeOfferId={activeOfferId} />
         </div>
       </div>
     </div>

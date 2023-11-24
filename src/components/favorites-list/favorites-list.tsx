@@ -1,12 +1,10 @@
 import {Offer} from '../../types/types';
 import {CITIES} from '../../consts';
 import PlaceCard from '../place-card/place-card';
+import {useAppSelector} from '../../hooks';
 
-type FavoritesListProps = {
-  offers: Offer[];
-}
-
-function FavoritesList({offers}: FavoritesListProps): JSX.Element | null {
+function FavoritesList(): JSX.Element | null {
+  const offers: Offer[] = useAppSelector((state) => state.offers);
   const favoritesCards: Offer[][] = [];
   CITIES?.forEach((item) => {
     const filterCards = offers.filter((el) => el.city.name === item && el.isFavorite);
