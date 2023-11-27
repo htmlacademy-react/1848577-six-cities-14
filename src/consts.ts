@@ -22,4 +22,11 @@ const MAX_REVIEWS_COUNT = 10;
 
 const MAX_NEAR_PLACES_COUNT = 3;
 
-export {AppRoute, AuthorizationStatus, ReviewLength, CITIES, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT};
+enum SortOption {
+  Popular = 'Popular',
+  PriceLowToHigh = 'Price: low to high',
+  PriceHighToLow = 'Price: high to low',
+  TopRatedFirst = 'Top rated first'
+}
+
+export {AppRoute, AuthorizationStatus, ReviewLength, CITIES, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, SortOption};

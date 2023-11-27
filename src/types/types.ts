@@ -1,3 +1,4 @@
+import {SortOption} from '../consts';
 import {store} from '../store';
 
 export type OfferPreview = {
@@ -62,3 +63,5 @@ export type Review = {
 export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
+
+export type SortingType = keyof typeof SortOption;
