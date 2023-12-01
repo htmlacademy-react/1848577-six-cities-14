@@ -51,7 +51,7 @@ const offers: Offer[] = [
       longitude: 6.779314,
       zoom: 16
     },
-    id: 1
+    id: '1'
   },
   {
     city: {
@@ -104,7 +104,7 @@ const offers: Offer[] = [
       longitude: 4.902976,
       zoom: 16
     },
-    id: 2
+    id: '2'
   },
   {
     city: {
@@ -164,7 +164,7 @@ const offers: Offer[] = [
       longitude: 4.3376969999999995,
       zoom: 16
     },
-    id: 3
+    id: '3'
   },
   {
     city: {
@@ -218,7 +218,7 @@ const offers: Offer[] = [
       longitude: 4.883976,
       zoom: 16
     },
-    id: 4
+    id: '4'
   }
 ];
 

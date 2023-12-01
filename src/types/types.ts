@@ -4,7 +4,7 @@ import {store} from '../store';
 export type OfferPreview = {
   city: City;
   goods: string[];
-  id: number;
+  id: string;
   isFavorite: boolean;
   isPremium: boolean;
   location: Location;

@@ -12,8 +12,9 @@ function OfferPage() {
   const activeCity = useAppSelector((state: State): string => state.activeCity);
   const offers: Offer[] = useAppSelector((state) => state.offers);
   const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
-  const offerId = Number(useParams().id);
+  const offerId = useParams().id;
   const offerById = offers.find((item) => item.id === offerId);
+
   if (offerById) {
     const {title, images, isPremium, type, bedrooms, maxAdults, price, goods, host, description} = offerById;
 
