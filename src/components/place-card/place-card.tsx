@@ -19,7 +19,7 @@ const sizeMap: Record<CardImageSize, {width: string; height: string}> = {
 };
 
 function PlaceCard({offer, size, page, onCardHover}: PlaceCardProps): JSX.Element {
-  const {images, isPremium, price, title, type, id, rating} = offer;
+  const {previewImage, isPremium, price, title, type, id, rating} = offer;
 
   function handleMouseEnter() {
     onCardHover?.(id);
@@ -44,7 +44,7 @@ function PlaceCard({offer, size, page, onCardHover}: PlaceCardProps): JSX.Elemen
       {isPremium && <PremiumMark />}
       <div className={`${page}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={images[0]} {...sizeMap[size]} alt="Place image" />
+          <img className="place-card__image" src={previewImage} {...sizeMap[size]} alt="Place image" />
         </Link>
       </div>
       <div className={`${getCardInfoClass()}-card__info`}>

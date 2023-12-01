@@ -29,4 +29,12 @@ enum SortOption {
   TopRatedFirst = 'Top rated first'
 }
 
-export {AppRoute, AuthorizationStatus, ReviewLength, CITIES, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, SortOption};
+enum APIRoute {
+  Offers = '/offers',
+  Nearby = '/nearby',
+  Comments = '/comments',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+export {AppRoute, AuthorizationStatus, ReviewLength, CITIES, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, SortOption, APIRoute};
