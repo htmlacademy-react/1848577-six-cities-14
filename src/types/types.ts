@@ -60,6 +60,19 @@ export type Review = {
 };
 }
 
+export type AuthData = {
+  login: string;
+  password: string;
+}
+
+export type UserData = {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+  email: string;
+  token: string;
+}
+
 export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;

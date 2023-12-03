@@ -1,11 +1,12 @@
 import {useRef, useEffect} from 'react';
 import {Marker, layerGroup, Icon} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {OfferPreview, Location} from '../../types/types';
+import {OfferPreview, Location, Offer} from '../../types/types';
 import useMap from '../../hooks/use-map';
 
 type MapProps = {
   page: 'cities' | 'offer';
+  city: Offer['city'];
   offers: OfferPreview[];
   location: Location;
   activeOfferId?: OfferPreview['id'] | null;
@@ -23,11 +24,17 @@ const currentCustomIcon = new Icon({
   iconAnchor: [15, 40]
 });
 
-function Map({page, offers, location, activeOfferId}: MapProps): JSX.Element {
+function Map({page, city, offers, location, activeOfferId}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, location);
 
   const currentOffers = (activeOfferId === undefined ? offers.slice(0, 3) : offers);
+
+  useEffect(() => {
+    if(map) {
+      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
+    }
+  }, [map, city.location]);
 
   useEffect(() => {
     if (map) {

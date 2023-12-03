@@ -98,7 +98,7 @@ function OfferPage() {
                 <ReviewsList />
               </div>
             </div>
-            <Map page="offer" offers={offers} location={filteredOffers[0].city.location} />
+            <Map page='offer' city={filteredOffers[0].city} offers={offers} location={filteredOffers[0].city.location} />
           </section>
           <div className="container">
             <NearPlaces offers={offers} />

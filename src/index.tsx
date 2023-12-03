@@ -3,18 +3,21 @@ import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
 import {store} from './store';
-import {fetchOfferAction} from './store/api-action';
+import {checkAuthAction, fetchOfferAction} from './store/api-action';
+import {ToastContainer} from 'react-toastify';
 
 store.dispatch(fetchOfferAction());
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-  <Provider store = {store}>
-    <React.StrictMode>
+  <React.StrictMode>
+    <Provider store = {store}>
+      <ToastContainer />
       <App />
-    </React.StrictMode>
-  </Provider>
+    </Provider>
+  </React.StrictMode>
 );

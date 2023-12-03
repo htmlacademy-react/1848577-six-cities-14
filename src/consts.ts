@@ -1,9 +1,9 @@
-const AppRoute = {
-  Main: '/',
-  Login: '/login',
-  Favorites: '/favorites',
-  Offer: '/offer/:id'
-} as const;
+enum AppRoute {
+  Main = '/',
+  Login = '/login',
+  Favorites = '/favorites',
+  Offer = '/offer/:id'
+}
 
 enum AuthorizationStatus {
   Auth = 'AUTH',

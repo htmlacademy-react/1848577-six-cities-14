@@ -50,7 +50,7 @@ function CitiesPlaces(): JSX.Element | null {
           </div>
         </section>
         <div className='cities__right-section'>
-          <Map page='cities' offers={currentOffers} location={currentOffers[0].city.location} activeOfferId={activeOfferId} />
+          <Map page='cities' city={currentOffers[0].city} offers={currentOffers} location={currentOffers[0].city.location} activeOfferId={activeOfferId} />
         </div>
       </div>
     </div>
