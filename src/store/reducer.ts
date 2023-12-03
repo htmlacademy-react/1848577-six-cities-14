@@ -1,7 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {CITIES, SortOption} from '../consts';
+import {AuthorizationStatus, CITIES, SortOption} from '../consts';
 import {Offer, SortingType} from '../types/types';
-import {changeCity, fetchFavorites, fetchOffers, setOffersDataLoadingStatus, setSortingType} from './action';
+import {changeCity, fetchFavorites, fetchOffers, requireAuthorization, setOffersDataLoadingStatus, setSortingType} from './action';
 
 type State = {
   activeCity: string;
@@ -9,6 +9,7 @@ type State = {
   activeSortingType: typeof SortOption[SortingType];
   isOffersDataLoading: boolean;
   favorites: Offer[];
+  authorizationStatus: AuthorizationStatus;
 }
 
 const initialState: State = {
@@ -17,6 +18,7 @@ const initialState: State = {
   activeSortingType: SortOption.Popular,
   isOffersDataLoading: false,
   favorites: [],
+  authorizationStatus: AuthorizationStatus.Auth,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -35,6 +37,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSortingType, (state, action) => {
       state.activeSortingType = action.payload.activeSortingType;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 

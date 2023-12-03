@@ -1,5 +1,5 @@
-import {SortOption} from '../consts';
-import {Offer} from '../types/types';
+import {AuthorizationStatus, SortOption} from '../consts';
+import {Offer, State} from '../types/types';
 
 function upperCaseFirst(str: string): string {
   if (!str) {
@@ -37,4 +37,9 @@ function sortByOption (offers: Offer[], activeSortingType: string) {
   }
 }
 
-export {upperCaseFirst, getDate, getRatingWidth, sortByOption};
+function checkAuthStatus (state: State): boolean {
+  const authorizationStatus = state.authorizationStatus;
+  return authorizationStatus === AuthorizationStatus.Auth;
+}
+
+export {upperCaseFirst, getDate, getRatingWidth, sortByOption, checkAuthStatus};
