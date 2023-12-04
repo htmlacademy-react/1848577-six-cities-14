@@ -1,5 +1,8 @@
 import {Fragment} from 'react';
 import {ChangeEvent} from 'react';
+import {useAppSelector} from '../../hooks';
+import {State} from '../../types/types';
+import {Status} from '../../consts';
 
 const ratingReview = [
   {title: 'perfect', value: '5'},
@@ -15,6 +18,10 @@ type RatingProp = {
 }
 
 function Rating({rating, onChange}: RatingProp) {
+  const statusPost = useAppSelector(
+    (state: State): Status => state.statusPost
+  );
+
   return (
     <div className="reviews__rating-form form__rating">
       {ratingReview.map(({title, value}) => (
@@ -27,6 +34,7 @@ function Rating({rating, onChange}: RatingProp) {
             type="radio"
             onChange={onChange}
             checked={rating === value}
+            disabled={statusPost === Status.Loading}
           />
           <label
             htmlFor={`${value}-stars`}

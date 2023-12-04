@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {Offer, OfferPreview} from '../../types/types';
+import {OfferPreview} from '../../types/types';
 import {getRatingWidth, upperCaseFirst} from '../../utils/utils';
 import PremiumMark from '../ui/premium-mark/premium-mark';
 import ButtonBookmark from '../ui/button-bookmark/button-bookmark';
@@ -7,7 +7,7 @@ import ButtonBookmark from '../ui/button-bookmark/button-bookmark';
 type CardImageSize = 'small' | 'big';
 
 type PlaceCardProps = {
-  offer: Offer;
+  offer: OfferPreview;
   size: CardImageSize;
   page: 'cities' | 'favorites' | 'near-places';
   onCardHover?: (offerId: OfferPreview['id'] | null) => void;

@@ -3,16 +3,15 @@ import {store} from '../store';
 
 export type OfferPreview = {
   city: City;
-  goods: string[];
   id: string;
   isFavorite: boolean;
   isPremium: boolean;
   location: Location;
-  maxAdults: number;
   price: number;
   rating: number;
   title: string;
   type: string;
+  previewImage: string;
 }
 
 export type Offer = OfferPreview & {
@@ -20,7 +19,8 @@ export type Offer = OfferPreview & {
   description: string;
   host: Host;
   images: string[];
-  previewImage: string;
+  maxAdults: number;
+  goods: string[];
 }
 
 export type City = {
@@ -59,6 +59,12 @@ export type Review = {
   name: string;
 };
 }
+
+export type PostReview = {
+  id: string;
+  rating: number;
+  comment: string;
+};
 
 export type AuthData = {
   login: string;
