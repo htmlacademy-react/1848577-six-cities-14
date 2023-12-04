@@ -1,5 +1,5 @@
 import {AuthorizationStatus, SortOption} from '../consts';
-import {Offer, State} from '../types/types';
+import {OfferPreview, State} from '../types/types';
 
 function upperCaseFirst(str: string): string {
   if (!str) {
@@ -22,7 +22,7 @@ function getRatingWidth(rating: number): string {
   return ratingWidth;
 }
 
-function sortByOption (offers: Offer[], activeSortingType: string) {
+function sortByOption (offers: OfferPreview[], activeSortingType: string) {
   switch (activeSortingType) {
     case SortOption.Popular:
       return offers;

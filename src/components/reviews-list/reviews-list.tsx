@@ -1,9 +1,12 @@
-import {reviews} from '../../mocks/mocks';
-import ReviewForm from '../review-form/review-form';
+import { PropsWithChildren } from 'react';
 import {MAX_REVIEWS_COUNT} from '../../consts';
 import ReviewItem from '../review-item/review-item';
+import { Review, State } from '../../types/types';
+import { useAppSelector } from '../../hooks';
 
-function ReviewsList() {
+function ReviewsList({children}: PropsWithChildren): JSX.Element {
+  const reviews = useAppSelector((state: State): Review[] => state.reviews);
+
   const reviewsToRender = [...reviews]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, MAX_REVIEWS_COUNT);
@@ -16,7 +19,7 @@ function ReviewsList() {
           <ReviewItem key={review.id} review={review} />
         ))}
       </ul>
-      <ReviewForm />
+      {children}
     </section>
   );
 }

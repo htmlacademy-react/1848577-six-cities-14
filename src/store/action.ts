@@ -4,7 +4,7 @@ import {AuthorizationStatus, SortOption, AppRoute} from '../consts';
 
 export const changeCity = createAction<{activeCity: string}>('offers/changeCity');
 
-export const fetchOffers = createAction<Offer[]>('offers/fetchOffers');
+export const fetchOffers = createAction('offers/fetchOffers');
 
 export const fetchFavorites = createAction<Offer[]>('favorites/fetchFavorites');
 

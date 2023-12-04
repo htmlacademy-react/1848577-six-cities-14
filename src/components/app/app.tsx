@@ -7,19 +7,11 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import {useAppSelector} from '../../hooks';
-import Loading from '../../pages/loading/loading';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
 
 function App(): JSX.Element {
-  const isOfferDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-
-  if (authorizationStatus === AuthorizationStatus.Unknown || isOfferDataLoading) {
-    return (
-      <Loading />
-    );
-  }
 
   return (
     <HistoryRouter history={browserHistory}>
@@ -40,7 +32,7 @@ function App(): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              restrictedFor={AuthorizationStatus.NoAuth}
+              restrictedFor={authorizationStatus}
               redirectTo={AppRoute.Login}
             >
               <FavoritesPage />

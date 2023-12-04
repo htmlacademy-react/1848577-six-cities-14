@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import {useState} from 'react';
-import {Offer} from '../../../types/types';
+import {Offer, OfferPreview} from '../../../types/types';
 
 type ButtonBookmarkProp = {
-  offer: Offer;
+  offer: Offer | OfferPreview;
   isBig?: boolean;
 }
 

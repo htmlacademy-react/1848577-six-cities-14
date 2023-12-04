@@ -28,8 +28,6 @@ function Map({page, city, offers, location, activeOfferId}: MapProps): JSX.Eleme
   const mapRef = useRef(null);
   const map = useMap(mapRef, location);
 
-  const currentOffers = (activeOfferId === undefined ? offers.slice(0, 3) : offers);
-
   useEffect(() => {
     if(map) {
       map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
@@ -39,7 +37,7 @@ function Map({page, city, offers, location, activeOfferId}: MapProps): JSX.Eleme
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
-      currentOffers.forEach((offer) => {
+      offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
           lng: offer.location.longitude,
@@ -58,7 +56,7 @@ function Map({page, city, offers, location, activeOfferId}: MapProps): JSX.Eleme
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, currentOffers, activeOfferId]);
+  }, [map, offers, activeOfferId]);
 
   return (
     <section className={`${page}__map map`} ref={mapRef}></section>

@@ -1,11 +1,11 @@
-import {Offer} from '../../types/types';
+import {OfferPreview} from '../../types/types';
 import {CITIES} from '../../consts';
 import PlaceCard from '../place-card/place-card';
 import {useAppSelector} from '../../hooks';
 
 function FavoritesList(): JSX.Element | null {
-  const offers: Offer[] = useAppSelector((state) => state.offers);
-  const favoritesCards: Offer[][] = [];
+  const offers: OfferPreview[] = useAppSelector((state) => state.favorites);
+  const favoritesCards: OfferPreview[][] = [];
   CITIES?.forEach((item) => {
     const filterCards = offers.filter((el) => el.city.name === item && el.isFavorite);
     if(filterCards.length !== 0) {
@@ -29,7 +29,7 @@ function FavoritesList(): JSX.Element | null {
             </div>
           </div>
           <div className="favorites__places">
-            {item.map((el: Offer) => (
+            {item.map((el: OfferPreview) => (
               <PlaceCard key={el.id} offer={el} size='small' page='favorites' />
             ))}
           </div>
