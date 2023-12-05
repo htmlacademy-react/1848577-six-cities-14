@@ -1,14 +1,15 @@
 import {useState} from 'react';
 import {SortOption} from '../../consts';
-import {SortingType, State} from '../../types/types';
+import {SortingType} from '../../types/types';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {setSortingType} from '../../store/action';
+import {setSortedType} from '../../store/app-process/app-process';
+import {getActiveSortedType} from '../../store/app-process/selectors';
 
 function Sorting(): JSX.Element {
   const values: typeof SortOption[SortingType][] = Object.values(SortOption);
 
   const [isOpened, setIsOpened] = useState(false);
-  const activeSortingType = useAppSelector((state: State): typeof SortOption[SortingType] => state.activeSortingType);
+  const activeSortedType = useAppSelector(getActiveSortedType);
   const dispatch = useAppDispatch();
 
   function handleTypeClick() {
@@ -23,7 +24,7 @@ function Sorting(): JSX.Element {
   }
 
   function handleOnClickOption(clickedOption: typeof SortOption[SortingType]) {
-    dispatch(setSortingType({activeSortingType: clickedOption}));
+    dispatch(setSortedType(clickedOption));
   }
 
   function isOpenedClass() {
@@ -35,7 +36,7 @@ function Sorting(): JSX.Element {
   }
 
   function isActiveClass(value: SortOption) {
-    if (value === activeSortingType) {
+    if (value === activeSortedType) {
       return 'places__option--active';
     } else {
       return '';
@@ -46,7 +47,7 @@ function Sorting(): JSX.Element {
     <form className='places__sorting' action="#" method="get" onKeyDown={handleKeydown}>
       <span className='places__sorting-caption'>Sort by</span>
       <span className='places__sorting-type' tabIndex={0} onClick={handleTypeClick}>
-        {activeSortingType}
+        {activeSortedType}
         <svg className='places__sorting-arrow' width={7} height={4}>
           <use xlinkHref='#icon-arrow-select'></use>
         </svg>

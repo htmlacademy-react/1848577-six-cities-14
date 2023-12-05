@@ -10,10 +10,11 @@ import NearPlaces from '../../components/near-places/near-places';
 import MainHeader from '../../components/main-header/main-header';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchReviewsAction, fetchNearPlacesAction, fetchOfferAction} from '../../store/api-action';
-import {fetchOffers} from '../../store/action';
-import {checkAuthStatus} from '../../utils/utils';
 import Loading from '../loading/loading';
-import { MAX_NEAR_PLACES_COUNT, Status } from '../../consts';
+import {Status} from '../../consts';
+import {getNearPlaces, getOffer, getOfferStatus} from '../../store/offer-data/selectors';
+import {dropOffer} from '../../store/offer-data/offer-data';
+import {getAuthCheckedStatus} from '../../store/user-process/selectors';
 
 function OfferPage(): JSX.Element {
   const offerId = useParams().id;
@@ -28,14 +29,14 @@ function OfferPage(): JSX.Element {
     }
 
     return () => {
-      dispatch(fetchOffers());
+      dispatch(dropOffer());
     };
   }, [offerId, dispatch]);
 
-  const currentOffer = useAppSelector((state): Offer | null => state.offer);
-  const nearPlacesToRender = useAppSelector((state): OfferPreview[] => state.nearPlaces).slice(0, MAX_NEAR_PLACES_COUNT);
-  const status = useAppSelector((state) => state.statusOffer);
-  const isAuth = useAppSelector(checkAuthStatus);
+  const currentOffer = useAppSelector(getOffer);
+  const nearPlaces = useAppSelector(getNearPlaces);
+  const status = useAppSelector(getOfferStatus);
+  const isAuth = useAppSelector(getAuthCheckedStatus);
 
   const minimizeCurrentOffer = (offer: Offer): OfferPreview => ({
     id: offer.id,
@@ -51,9 +52,9 @@ function OfferPage(): JSX.Element {
       },
     },
     location: {
-      latitude: offer.city.location.latitude,
-      longitude: offer.city.location.longitude,
-      zoom: offer.city.location.zoom
+      latitude: offer.location.latitude,
+      longitude: offer.location.longitude,
+      zoom: offer.location.zoom
     },
     isFavorite: offer.isFavorite,
     isPremium: offer.isPremium,
@@ -67,7 +68,7 @@ function OfferPage(): JSX.Element {
     );
   }
 
-  const pointsForMap = [...nearPlacesToRender, minimizeCurrentOffer(currentOffer)];
+  const pointsForMap = [...nearPlaces, minimizeCurrentOffer(currentOffer)];
 
   const slicedImages = currentOffer.images.slice(0, 6);
 
@@ -158,7 +159,7 @@ function OfferPage(): JSX.Element {
           <Map page='offer' city={currentOffer.city} offers={pointsForMap} location={currentOffer.city.location} />
         </section>
         <div className="container">
-          <NearPlaces offers={nearPlacesToRender} />
+          <NearPlaces offers={nearPlaces} />
         </div>
       </main>
     </div>

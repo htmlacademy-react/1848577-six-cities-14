@@ -1,14 +1,15 @@
-import {CITIES} from '../../consts';
+import {CityName} from '../../consts';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeCity} from '../../store/action';
-import {State} from '../../types/types';
+import {getActiveCity} from '../../store/app-process/selectors';
+import {changeActiveCity} from '../../store/app-process/app-process';
+import {memo} from 'react';
 
-function LocationsList(): JSX.Element {
-  const cities: string[] = Object.values(CITIES);
-  const activeCity = useAppSelector((state: State):string => state.activeCity);
+const LocationsList = memo((): JSX.Element => {
+  const cities: CityName[] = Object.values(CityName);
+  const activeCity = useAppSelector(getActiveCity);
   const dispatch = useAppDispatch();
 
-  function isActiveCityClass (city: string): string {
+  function isActiveCityClass (city: CityName): string {
     let activeCityClass;
     if (city === activeCity) {
       activeCityClass = 'tabs__item--active';
@@ -29,7 +30,7 @@ function LocationsList(): JSX.Element {
               href="#"
               onClick={(evt: React.MouseEvent<HTMLElement>) => {
                 evt.preventDefault();
-                dispatch(changeCity({activeCity: item}));
+                dispatch(changeActiveCity(item));
               }}
             >
               <span>{item}</span>
@@ -39,6 +40,8 @@ function LocationsList(): JSX.Element {
       </ul>
     </section>
   );
-}
+});
+
+LocationsList.displayName = 'LocationList';
 
 export default LocationsList;

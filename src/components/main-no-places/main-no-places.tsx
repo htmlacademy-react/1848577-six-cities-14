@@ -1,5 +1,7 @@
+import {CityName} from '../../consts';
+
 type MainNoPlacesProps = {
-  city: string;
+  city: CityName;
 }
 
 function MainNoPlaces({city}: MainNoPlacesProps): JSX.Element {
