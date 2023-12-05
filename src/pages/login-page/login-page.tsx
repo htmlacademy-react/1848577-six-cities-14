@@ -1,6 +1,7 @@
 import Logo from '../../components/ui/logo/logo';
 import {FormEvent, useRef} from 'react';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {Navigate} from 'react-router-dom';
 import {AppRoute} from '../../consts';
 import {loginAction} from '../../store/api-action';

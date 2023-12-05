@@ -1,13 +1,30 @@
+import {useEffect} from 'react';
 import CitiesPlaces from '../../components/cities-places/cities-places';
 import MainHeader from '../../components/main-header/main-header';
 import LocationsList from '../../components/locations-list/locations-list';
 import {getOffersStatus} from '../../store/offers-data/selectors';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {useCallback, useState} from 'react';
 import Loading from '../loading/loading';
 import {Status} from '../../consts';
+import {useAppDispatch } from '../../hooks/use-app-dispatch';
+import {getAuthCheckedStatus} from '../../store/user-process/selectors';
+import {fetchFavoritesAction} from '../../store/api-action';
+import {dropFavorites} from '../../store/offers-data/offers-data';
 
 function MainPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(getAuthCheckedStatus);
+
+  useEffect(() => {
+    if (authStatus) {
+      dispatch(fetchFavoritesAction());
+    }
+    return () => {
+      dispatch(dropFavorites());
+    };
+  }, [dispatch, authStatus]);
+
   const status = useAppSelector(getOffersStatus);
 
   const [isNoLength, setLengthOffers] = useState<boolean>(false);

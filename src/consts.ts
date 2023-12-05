@@ -23,6 +23,8 @@ const MAX_REVIEWS_COUNT = 10;
 
 const MAX_NEAR_PLACES_COUNT = 3;
 
+const MAX_OFFER_PAGE_IMAGES_COUNT = 6;
+
 enum SortOption {
   Popular = 'Popular',
   PriceLowToHigh = 'Price: low to high',
@@ -65,4 +67,4 @@ enum CityName {
   Dusseldorf = 'Dusseldorf'
 }
 
-export {AppRoute, AuthorizationStatus, ReviewLength, CITIES, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, SortOption, APIRoute, Status, NameSpace, CityName};
+export {AppRoute, AuthorizationStatus, ReviewLength, CITIES, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, MAX_OFFER_PAGE_IMAGES_COUNT, SortOption, APIRoute, Status, NameSpace, CityName};

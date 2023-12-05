@@ -1,5 +1,4 @@
-import {useMemo} from 'react';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {getAuthCheckedStatus} from '../../store/user-process/selectors';
 import LoggedInNav from './logged-in-nav';
 import LoggedOutNav from './logged-out-nav';
@@ -7,16 +6,14 @@ import LoggedOutNav from './logged-out-nav';
 
 function Nav(): JSX.Element {
   const isAuth = useAppSelector(getAuthCheckedStatus);
-  const getCurrentNavItem = useMemo(
-    () => (isAuth) ? LoggedInNav : LoggedOutNav,
-    [isAuth]
-  );
+  const getCurrentHeaderItem = () => (isAuth) ? <LoggedInNav /> : <LoggedOutNav />;
 
   return (
     <nav className="header__nav">
-      {getCurrentNavItem()}
+      <ul className="header__nav-list">
+        {getCurrentHeaderItem()}
+      </ul>
     </nav>
   );
 }
-
 export default Nav;

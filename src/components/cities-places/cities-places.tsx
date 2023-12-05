@@ -2,7 +2,7 @@ import PlaceCard from '../place-card/place-card';
 import Map from '../map/map';
 import {OfferPreview} from '../../types/types';
 import {useMemo, useState} from 'react';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {sortByOption} from '../../utils/utils';
 import Sorting from '../sorting/sorting';
 import MainNoPlaces from '../main-no-places/main-no-places';
