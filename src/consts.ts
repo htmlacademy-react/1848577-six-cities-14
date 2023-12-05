@@ -36,6 +36,7 @@ enum APIRoute {
   Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
+  Favorite = '/favorite',
 }
 
 enum Status {
@@ -45,4 +46,23 @@ enum Status {
   Error = 'error',
 }
 
-export {AppRoute, AuthorizationStatus, ReviewLength, CITIES, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, SortOption, APIRoute, Status};
+enum NameSpace {
+  App = 'APP',
+  User = 'USER',
+  Offers = 'OFFERS',
+  Reviews = 'REVIEWS',
+  Favorites = 'FAVORITES',
+  NearPlaces = 'NEAR_PLACES',
+  Offer = 'OFFER',
+}
+
+enum CityName {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf'
+}
+
+export {AppRoute, AuthorizationStatus, ReviewLength, CITIES, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, SortOption, APIRoute, Status, NameSpace, CityName};

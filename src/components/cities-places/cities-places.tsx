@@ -1,30 +1,37 @@
 import PlaceCard from '../place-card/place-card';
 import Map from '../map/map';
-import {OfferPreview, State} from '../../types/types';
-import {useState} from 'react';
+import {OfferPreview} from '../../types/types';
+import {useMemo, useState} from 'react';
 import {useAppSelector} from '../../hooks';
 import {sortByOption} from '../../utils/utils';
 import Sorting from '../sorting/sorting';
 import MainNoPlaces from '../main-no-places/main-no-places';
+import {getFilteredOffers} from '../../store/offers-data/selectors';
+import {getActiveCity, getActiveSortedType} from '../../store/app-process/selectors';
 
-function CitiesPlaces(): JSX.Element | null {
+type CitiesProps = {
+  onCityChange: (isLength: boolean) => void;
+};
 
-  const activeCity = useAppSelector((state: State): string => state.activeCity);
-  const offers: OfferPreview[] = useAppSelector((state: State) => state.offers);
-  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
-  // const [activeOfferId, setActiveOfferId] = useState<Offer['id'] | null>(null);
+function CitiesPlaces({onCityChange}: CitiesProps): JSX.Element | null {
+
+  const activeCity = useAppSelector(getActiveCity);
+  const offers = useAppSelector(getFilteredOffers);
   const [activeOffer, setActiveOffer] = useState<OfferPreview | undefined>();
-  // const handleCardHover = (offerId: Offer['id'] | null) => setActiveOfferId(offerId);
   const handleCardHover = (selectedCardId:OfferPreview['id'] | null) => {
-    const currentPoint: OfferPreview | undefined = filteredOffers.find((offer) =>
+    const currentPoint: OfferPreview | undefined = offers.find((offer) =>
       offer.id === selectedCardId,
     );
     setActiveOffer(currentPoint);
   };
-  const activeSortType = useAppSelector((state: State): string => state.activeSortingType);
-  const currentOffers = sortByOption(filteredOffers, activeSortType);
+  const activeSortType = useAppSelector(getActiveSortedType);
+  const currentOffers = useMemo(
+    () => sortByOption(offers, activeSortType),
+    [activeSortType, offers]
+  );
 
-  if (!filteredOffers.length) {
+  if (currentOffers.length === 0) {
+    onCityChange(true);
     return <MainNoPlaces city={activeCity} />;
   }
 

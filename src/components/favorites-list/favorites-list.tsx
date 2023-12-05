@@ -2,9 +2,10 @@ import {OfferPreview} from '../../types/types';
 import {CITIES} from '../../consts';
 import PlaceCard from '../place-card/place-card';
 import {useAppSelector} from '../../hooks';
+import {getFavoritesOffers} from '../../store/offers-data/selectors';
 
 function FavoritesList(): JSX.Element | null {
-  const offers: OfferPreview[] = useAppSelector((state) => state.favorites);
+  const offers = useAppSelector(getFavoritesOffers);
   const favoritesCards: OfferPreview[][] = [];
   CITIES?.forEach((item) => {
     const filterCards = offers.filter((el) => el.city.name === item && el.isFavorite);

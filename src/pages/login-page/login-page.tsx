@@ -1,16 +1,16 @@
 import Logo from '../../components/ui/logo/logo';
 import {FormEvent, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {checkAuthStatus} from '../../utils/utils';
 import {Navigate} from 'react-router-dom';
 import {AppRoute} from '../../consts';
 import {loginAction} from '../../store/api-action';
+import {getAuthCheckedStatus} from '../../store/user-process/selectors';
 
 function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(checkAuthStatus);
+  const isAuth = useAppSelector(getAuthCheckedStatus);
 
   if (isAuth) {
     return (
