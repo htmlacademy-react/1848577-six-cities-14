@@ -1,5 +1,6 @@
 import {CityName} from '../../consts';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {getActiveCity} from '../../store/app-process/selectors';
 import {changeActiveCity} from '../../store/app-process/app-process';
 import {memo} from 'react';

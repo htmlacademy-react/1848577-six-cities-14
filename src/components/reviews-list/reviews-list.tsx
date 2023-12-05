@@ -2,7 +2,7 @@ import {PropsWithChildren} from 'react';
 import {MAX_REVIEWS_COUNT} from '../../consts';
 import ReviewItem from '../review-item/review-item';
 import {Review} from '../../types/types';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {getReviews} from '../../store/reviews-data/selectors';
 
 function ReviewsList({children}: PropsWithChildren): JSX.Element {

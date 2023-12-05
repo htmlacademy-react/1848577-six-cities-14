@@ -7,8 +7,6 @@ export const getOffer = createSelector(
   (state) => state.offer
 );
 
-export const getOfferStatus = (state: State): Status => (
-  state[NameSpace.Offer].fetchingStatus
-);
+export const getOfferStatus = (state: State): Status => state[NameSpace.Offer].fetchingStatus;
 
 export const getNearPlaces = (state: State): OfferPreview[] => state[NameSpace.Offer].nearPlaces;

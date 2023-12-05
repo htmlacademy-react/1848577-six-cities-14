@@ -1,7 +1,8 @@
 import {useState} from 'react';
 import {SortOption} from '../../consts';
 import {SortingType} from '../../types/types';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {setSortedType} from '../../store/app-process/app-process';
 import {getActiveSortedType} from '../../store/app-process/selectors';
 
