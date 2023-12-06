@@ -6,13 +6,10 @@ import MainPage from '../../pages/main-page/main-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import {useAppSelector} from '../../hooks/use-app-selector';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
-import {getAuthStatus} from '../../store/user-process/selectors';
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthStatus);
 
   return (
     <HistoryRouter history={browserHistory}>
@@ -33,7 +30,7 @@ function App(): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              restrictedFor={authorizationStatus}
+              restrictedFor={AuthorizationStatus.NoAuth || AuthorizationStatus.Unknown}
               redirectTo={AppRoute.Login}
             >
               <FavoritesPage />
