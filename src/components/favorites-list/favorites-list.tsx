@@ -51,24 +51,3 @@ function FavoritesList() {
 }
 
 export default FavoritesList;
-
-//
-// import PlaceCard from '../place-card/place-card';
-//     <ul className="favorites__list">
-//       {favoritesCards.map((item) => (
-//         <li key={item[0].id} className="favorites__locations-items">
-//           <div className="favorites__locations locations locations--current">
-//             <div className="locations__item">
-//               <a className="locations__item-link" href="#">
-//                 <span>{item[0].city.name}</span>
-//               </a>
-//             </div>
-//           </div>
-//           <div className="favorites__places">
-//             {item.map((el: OfferPreview) => (
-//               <PlaceCard key={el.id} offer={el} size='small' page='favorites' />
-//             ))}
-//           </div>
-//         </li>
-//       ))}
-//     </ul>)

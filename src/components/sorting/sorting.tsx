@@ -28,7 +28,7 @@ function Sorting(): JSX.Element {
     dispatch(setSortedType(clickedOption));
   }
 
-  function isOpenedClass() {
+  function getOpenedClass() {
     if (isOpened) {
       return 'places__options--opened';
     } else {
@@ -36,7 +36,7 @@ function Sorting(): JSX.Element {
     }
   }
 
-  function isActiveClass(value: SortOption) {
+  function getActiveClass(value: SortOption) {
     if (value === activeSortedType) {
       return 'places__option--active';
     } else {
@@ -53,11 +53,11 @@ function Sorting(): JSX.Element {
           <use xlinkHref='#icon-arrow-select'></use>
         </svg>
       </span>
-      <ul className={`places__options places__options--custom ${isOpenedClass()}`}>
+      <ul className={`places__options places__options--custom ${getOpenedClass()}`}>
         {values.map((value) => (
           <li
             key={value}
-            className={`places__option ${isActiveClass(value)}`}
+            className={`places__option ${getActiveClass(value)}`}
             tabIndex={0}
             onClick={() => {
               handleOnClickOption(value);
