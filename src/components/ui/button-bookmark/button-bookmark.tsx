@@ -23,9 +23,9 @@ const ButtonBookmark = memo(({isFavorite, offerId, isBig}: ButtonBookmarkProp): 
 
   const btnClassName = cn('button', {
     'place-card__bookmark-button': !isBig,
-    'place-card__bookmark-button--active': isFavorites && !isBig,
+    'place-card__bookmark-button--active': isFavorites && !isBig && isAuthorized,
     'offer__bookmark-button': isBig,
-    'offer__bookmark-button--active': isFavorites && isBig,
+    'offer__bookmark-button--active': isFavorites && isBig && isAuthorized,
   });
 
   const svgClassName = cn({
