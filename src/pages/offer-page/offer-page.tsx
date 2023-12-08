@@ -153,7 +153,7 @@ function OfferPage(): JSX.Element {
                   </ReviewsList>
                 </div>
               </div>
-              <Map page='offer' city={currentOffer.city} offers={[...nearPlaces, minimizeCurrentOffer(currentOffer)]} location={currentOffer.city.location} />
+              <Map page='offer' city={currentOffer.city} offers={[...nearPlaces, minimizeCurrentOffer(currentOffer)]} location={currentOffer.city.location} activeOfferId={currentOffer.id}/>
             </section>
             <div className="container">
               <NearPlaces offers={nearPlaces} />
